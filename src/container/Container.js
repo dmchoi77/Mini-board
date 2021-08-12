@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BoardList from '../component/BoardList';
 import BoardNew from '../component/BoardNew';
-import { boardRemove, boardSave, boardSelectRow, BoardSelectRow } from '../module/boardReducer';
+import { boardRemove, boardSave, boardSelectRow } from '../module/boardReducer';
 
 function Container() {
 
@@ -20,7 +20,7 @@ function Container() {
   const onSave = (saveData) => dispatch(boardSave(saveData));
 
   //reducer state의 selecRowData field를 가져온 뒤 subscribe 
-  const { selectRow } = useSelector(state => state.boardReducer);
+  const { selectRowData } = useSelector(state => state.boardReducer);
 
   //User Function
   const onRowClick = (boardId) => {
@@ -51,7 +51,6 @@ function Container() {
   }
   //reducer state의 boards field를 가져온 뒤 subscribe
   const { boards } = useSelector(state => state.boardReducer);
-
 
   return (
     <div>
