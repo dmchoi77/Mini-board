@@ -10,12 +10,6 @@ import axios from 'axios';
 
 function App() {
 
-  // useEffect(()=>{
-  //   axios.get('/api/test')
-  //   .then(res=>console.log(res))
-  //   .catch()
-  // })
-
   return (
     <div className="App">
       <Router>

@@ -1,19 +1,11 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-//import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-//import { selectRow } from '../module/boardReducer';
+import { selectRow } from '../module/boardReducer';
 
 function BoardList() {
-  // // useSelector 로 boardReducer 에 있는 inputData 값을 가져온다.
-  // const { inputData } = useSelector(state => state.boardReducer)
-  // // useSelector 로 boardReducer 에 있는 lastId 값을 가져온다.
-  // const { lastId } = useSelector(state => state.boardReducer)
-
-  // const dispatch = useDispatch();
-  // const selectContent = (id) => {
-  //   dispatch(selectRow(id));
-  // }
+ 
 
   const [inputData, setInputData] = useState([{
     idx: '',
@@ -28,7 +20,6 @@ function BoardList() {
   useEffect(async () => {
     try {
       const res = await axios.get('/api/test');
-      console.log(res);
       const _inputData = await res.data.map((rowData) => (
         setLastIdx(lastIdx + 1),
         {
@@ -56,10 +47,10 @@ function BoardList() {
               <td >title</td>
             </tr>
             {lastIdx !== 0 ?
-              inputData.map(rowData => (
+              inputData.map((rowData,i) => (
                 // 최초 선언한 기본값은 나타내지 않음
                 rowData.idx !== '' &&
-                <tr>
+                <tr key={i}> 
                   <td className='listTableIndex'>
                     <Link to={`/BoardContent/${rowData.idx}`}>{rowData.idx}</Link>
                   </td>
